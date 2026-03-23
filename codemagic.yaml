@@ -3,40 +3,35 @@ workflows:
     name: iOS Build
     instance_type: mac_mini_m1
 
+    integrations:
+      app_store_connect: RemoteXAPI
+
     environment:
       xcode: latest
 
-      ios_signing:
-        certificates:
-          - Distribution certificate
-        provisioning_profiles:
-          - Workout Tracker
-
-      vars:
-        DEVELOPMENT_TEAM: 5A299U4MF6
-
-    triggering:
-      events:
-        - push
-
     scripts:
-- name: Build and Archive
-  script: |
-    xcodebuild \
-    -project "Workout Tracker.xcodeproj" \
-    -scheme "Workout Tracker" \
-    -configuration Release \
-    -archivePath build/Workout.xcarchive \
-    DEVELOPMENT_TEAM=5A299U4MF6 \
-    -allowProvisioningUpdates \
-    archive
+      - name: Build and Archive
+        script: |
+          xcodebuild \
+          -project "Workout Tracker.xcodeproj" \
+          -scheme "Workout Tracker" \
+          -configuration Release \
+          -archivePath build/Workout.xcarchive \
+          DEVELOPMENT_TEAM=5A299U4MF6 \
+          -allowProvisioningUpdates \
+          archive
 
       - name: Export IPA
         script: |
           xcodebuild -exportArchive \
           -archivePath build/Workout.xcarchive \
           -exportOptionsPlist exportOptions.plist \
-          -exportPath build/ipa
+          -exportPath build/ipa \
+          -allowProvisioningUpdates
 
     artifacts:
       - build/ipa/**/*.ipa
+
+    publishing:
+      app_store_connect:
+        auth: integration
