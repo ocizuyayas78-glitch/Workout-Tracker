@@ -3,7 +3,7 @@ workflows:
     name: iOS Build
     instance_type: mac_mini_m1
     integrations:
-      app_store_connect: codemagic
+      app_store_connect: RemoteXAPI
     environment:
       xcode: latest
       ios_signing:
