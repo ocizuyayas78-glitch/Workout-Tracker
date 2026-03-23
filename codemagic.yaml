@@ -8,6 +8,9 @@ workflows:
 
     environment:
       xcode: latest
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.workout.tracker.Workout-Tracker
 
     scripts:
       - name: Build and Archive
@@ -17,8 +20,6 @@ workflows:
           -scheme "Workout Tracker" \
           -configuration Release \
           -archivePath build/Workout.xcarchive \
-          DEVELOPMENT_TEAM=5A299U4MF6 \
-          -allowProvisioningUpdates \
           archive
 
       - name: Export IPA
@@ -26,8 +27,7 @@ workflows:
           xcodebuild -exportArchive \
           -archivePath build/Workout.xcarchive \
           -exportOptionsPlist exportOptions.plist \
-          -exportPath build/ipa \
-          -allowProvisioningUpdates
+          -exportPath build/ipa
 
     artifacts:
       - build/ipa/**/*.ipa
