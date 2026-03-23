@@ -113,7 +113,7 @@
 			name = "Workout Tracker";
 			packageProductDependencies = (
 			);
-			productName = "Workout Tracker";
+			productName = "WorkoutTracker";
 			productReference = 061C03802F706D5700CF89B3 /* Workout Tracker.app */;
 			productType = "com.apple.product-type.application";
 		};
