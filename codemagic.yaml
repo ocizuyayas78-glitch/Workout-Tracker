@@ -20,15 +20,16 @@ workflows:
         - push
 
     scripts:
-      - name: Build and Archive
-        script: |
-          xcodebuild \
-          -project "Workout Tracker.xcodeproj" \
-          -scheme "Workout Tracker" \
-          -configuration Release \
-          -archivePath build/Workout.xcarchive \
-          DEVELOPMENT_TEAM=5A299U4MF6 \
-          archive
+- name: Build and Archive
+  script: |
+    xcodebuild \
+    -project "Workout Tracker.xcodeproj" \
+    -scheme "Workout Tracker" \
+    -configuration Release \
+    -archivePath build/Workout.xcarchive \
+    DEVELOPMENT_TEAM=5A299U4MF6 \
+    -allowProvisioningUpdates \
+    archive
 
       - name: Export IPA
         script: |
