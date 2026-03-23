@@ -9,6 +9,8 @@ workflows:
       ios_signing:
         provisioning_profiles:
           - Workout Tracker
+      vars:
+        DEVELOPMENT_TEAM: 5A299U4MF6   # 👈 ДОБАВИЛИ ТОЛЬКО ЭТО
     triggering:
       events:
         - push
@@ -16,7 +18,7 @@ workflows:
     scripts:
       - name: Build and Archive
         script: |
-          xcodebuild -project "Workout Tracker.xcodeproj" -scheme "Workout Tracker" -configuration Release -derivedDataPath build -archivePath build/Workout.xcarchive -allowProvisioningUpdates archive
+          xcodebuild -project "Workout Tracker.xcodeproj" -scheme "Workout Tracker" -configuration Release -derivedDataPath build -archivePath build/Workout.xcarchive -allowProvisioningUpdates DEVELOPMENT_TEAM=$DEVELOPMENT_TEAM archive
       - name: Export IPA
         script: |
           xcodebuild -exportArchive -archivePath build/Workout.xcarchive -exportOptionsPlist exportOptions.plist -exportPath build/ipa -allowProvisioningUpdates
