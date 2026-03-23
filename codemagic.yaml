@@ -23,4 +23,3 @@ workflows:
     publishing:
       app_store_connect:
         auth: integration
-        bundle_id: com.pieksandrvoloshko.workouttracker
