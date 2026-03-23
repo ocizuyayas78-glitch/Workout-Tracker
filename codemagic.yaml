@@ -1,0 +1,27 @@
+workflows:
+  ios-workflow:
+    name: iOS Build
+    instance_type: mac_mini_m1
+    environment:
+      xcode: latest
+    triggering:
+      events:
+        - push
+        - pull_request
+      branch:
+        include_patterns:
+          - main
+    scripts:
+      - name: Build iOS App
+        script: |
+          xcodebuild build -project "Workout Tracker.xcodeproj" -scheme "Workout Tracker" -configuration Release -derivedDataPath build
+      - name: Build IPA
+        script: |
+          xcodebuild -project "Workout Tracker.xcodeproj" -scheme "Workout Tracker" -configuration Release -derivedDataPath build -archivePath build/Workout\ Tracker.xcarchive -allowProvisioningUpdates archive
+          xcodebuild -exportArchive -archivePath build/Workout\ Tracker.xcarchive -exportOptionsPlist exportOptions.plist -exportPath build/ipa -allowProvisioningUpdates
+    artifacts:
+      - build/ipa/**/*.ipa
+    publishing:
+      email:
+        recipients:
+          - ocizuyayas78@gmail.com
