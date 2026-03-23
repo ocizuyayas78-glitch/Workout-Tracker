@@ -10,7 +10,7 @@ workflows:
         certificates:
           - certificate.p12
         provisioning_profiles:
-          - com.workout.tracker.Workout-Tracker
+          - Workout Tracker
 
       vars:
         DEVELOPMENT_TEAM: 5A299U4MF6
@@ -28,6 +28,7 @@ workflows:
           -configuration Release \
           -archivePath build/Workout.xcarchive \
           DEVELOPMENT_TEAM=$DEVELOPMENT_TEAM \
+          CODE_SIGN_STYLE=Manual \
           archive
 
       - name: Export IPA
