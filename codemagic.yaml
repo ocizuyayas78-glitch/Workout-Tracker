@@ -22,5 +22,5 @@ workflows:
       - build/ipa/**/*.ipa
     publishing:
       app_store_connect:
-        auth: api_key
+        auth: integration
         bundle_id: com.pieksandrvoloshko.workouttracker
