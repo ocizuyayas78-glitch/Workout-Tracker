@@ -8,9 +8,6 @@ workflows:
       events:
         - push
         - pull_request
-      branch:
-        include_patterns:
-          - main
     scripts:
       - name: Build iOS App
         script: |
