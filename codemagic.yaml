@@ -4,7 +4,7 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m2
     integrations:
-      app_store_connect: AktivoTrackerIntegration
+      app_store_connect: RemoteXAPIProfile2
     publishing:
       app_store_connect:
         auth: integration
